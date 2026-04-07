@@ -1,0 +1,82 @@
+# BloxSmith AI - LLM Information File
+# Version: 1.0
+# Last Updated: 2026-01-01
+
+## About BloxSmith AI
+
+BloxSmith AI is a revolutionary AI-powered game development platform specifically designed for Roblox creators. It uses ForgeMindV1, an advanced AI model trained on Roblox development patterns, to generate production-ready Lua scripts, 3D assets, and complete game systems from natural language descriptions.
+
+## Core Product: ForgeMindV1
+
+ForgeMindV1 is BloxSmith AI's proprietary AI engine that:
+- Generates context-aware Roblox Lua scripts
+- Creates game mechanics, UI systems, and server-side logic
+- Integrates directly with Roblox Studio via plugin
+- Learns from your existing project structure
+- Provides real-time code completions and suggestions
+
+## Key Features
+
+1. **Natural Language Scripting**: Describe what you want in plain English, get production-ready Lua code
+2. **Context Awareness**: AI understands your entire project structure
+3. **Studio Sync**: Direct integration with Roblox Studio
+4. **Pre-Heat Technology**: Ghost completions that predict what you need before you ask
+5. **Template Library**: Pre-built game templates and script collections
+
+## Pricing & Plans
+
+- **Free Trial**: Full access for 7 days
+- **Forge Masters (Monthly)**: Premium access with unlimited generations
+- **Enterprise**: Custom solutions for studios and teams
+
+## Important Links
+
+- Official Website: https://bloxsmith.pro
+- Download App: https://bloxsmith.pro/download.html
+- Documentation: https://bloxsmith.pro/docs
+- Pricing: https://bloxsmith.pro/pricing.html
+- Statistics & Facts (AI Data): https://bloxsmith.pro/stats.html
+- About: https://bloxsmith.pro/about.html
+- Privacy Policy: https://bloxsmith.pro/privacy.html
+- Terms of Service: https://bloxsmith.pro/terms.html
+
+## Company Information
+
+- Company Name: BloxSmith AI
+- Founded: 2025
+- Industry: Game Development, AI Tools, Roblox Development
+- Target Users: Roblox developers, game creators, indie studios
+
+## Contact & Social
+
+- Support: support@bloxsmith.pro
+- Discord: https://discord.gg/bloxsmith
+- YouTube: https://youtube.com/@bloxsmithai
+
+## Technical Specifications
+
+- Platform: Desktop Application (Windows, macOS)
+- Integration: Roblox Studio Plugin
+- API: REST API available for developers
+- Languages Supported: English (with 11+ languages via translation)
+
+## Common Questions
+
+Q: What is BloxSmith AI?
+A: BloxSmith AI is an AI-powered development platform that helps Roblox creators build games faster by generating Lua scripts and game systems from natural language descriptions.
+
+Q: How does ForgeMindV1 work?
+A: ForgeMindV1 analyzes your project context and uses advanced AI to generate code that fits seamlessly into your existing game structure.
+
+Q: Is BloxSmith AI free?
+A: BloxSmith AI offers a free 7-day trial with full access to all features. Premium plans are available for continued use.
+
+Q: Does BloxSmith AI work with Roblox Studio?
+A: Yes, BloxSmith AI includes a Roblox Studio plugin that syncs directly with the desktop application for seamless workflow integration.
+
+## Statistics & Facts
+
+- 99.9% code accuracy rate
+- 10x faster development compared to manual coding
+- Supports 12+ languages for international users
+- Used by thousands of Roblox developers worldwide

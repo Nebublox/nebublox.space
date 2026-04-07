@@ -1,0 +1,20 @@
+{
+    "name": "bloxsmith-ai-website",
+    "version": "1.0.0",
+    "description": "BloxSmith AI Website",
+    "scripts": {
+        "build": "echo 'Static site - no build required'",
+        "lint": "eslint js/ api/ --ext .js"
+    },
+    "devDependencies": {
+        "eslint": "^8.57.0"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "dependencies": {
+        "@supabase/supabase-js": "^2.89.0",
+        "@vercel/speed-insights": "^1.3.1",
+        "nodemailer": "^7.0.12"
+    }
+}

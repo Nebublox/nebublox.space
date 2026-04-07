@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&family=Exo+2:wght@400;700;900&family=Quicksand:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ═══════════════════════════════════════════════════
+       COSMIC SYNTAX DESIGN SYSTEM
+       "The intersection of Deep Space and Hard Coding"
+       ═══════════════════════════════════════════════════ */
+
+    /* The Void - Background */
+    --void-black: #050505;
+    --vanta-black: #0a0a0f;
+
+    /* Singularity - Primary Glow */
+    --event-horizon: #6A0DAD;
+    --singularity-core: #3c096c;
+    --accretion-glow: #9d4edd;
+
+    /* Code Highlights - Secondary  */
+    --code-cyan: #00FFFF;
+    --code-pink: #FF00CC;
+
+    /* Text - Starlight */
+    --starlight: #E0E0E0;
+    --pure-white: #FFFFFF;
+
+    /* CSS Variables for Tailwind */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 88%;
+    --primary: 275 100% 36%;
+    --secondary: 180 100% 50%;
+    --accent: 320 100% 50%;
+    --radius: 0rem;
+    /* No rounded corners - Sharp edges only */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background-color: #000000 !important;
+    background-image: none !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: var(--starlight);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 15px;
+    /* Scaled up from browser default */
+  }
+
+  body::before {
+    content: none;
+  }
+}
+
+@layer components {
+
+  /* ═══════════════════════════════════════════════════
+     TYPOGRAPHY - The Architecture of Text
+     ═══════════════════════════════════════════════════ */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    color: var(--pure-white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .text-singularity {
+    color: var(--event-horizon);
+    text-shadow: 0 0 20px rgba(106, 13, 173, 0.8);
+  }
+
+  .text-code-cyan {
+    color: var(--code-cyan);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  }
+
+  .text-code-pink {
+    color: var(--code-pink);
+    text-shadow: 0 0 10px rgba(255, 0, 204, 0.6);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     GLASSMORPHISM IN SPACE - Feature Cards
+     ═══════════════════════════════════════════════════ */
+
+  .glass-cosmic,
+  .card,
+  .panel,
+  .glass {
+    background: rgba(10, 10, 15, 0.3) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    /* Sharp but slightly safe */
+  }
+
+  .glass-cosmic::before {
+    content: none;
+  }
+
+  .glass-cosmic:hover {
+    border-color: rgba(106, 13, 173, 0.5) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     BUTTONS - Sharp, Structural, Powerful
+     ═══════════════════════════════════════════════════ */
+
+  .btn-cosmic {
+    padding: 12px 32px;
+    background: var(--void-black);
+    border: 2px solid var(--event-horizon);
+    color: var(--event-horizon);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(106, 13, 173, 0.4);
+  }
+
+  .btn-cosmic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--event-horizon);
+    transition: width 0.3s ease;
+    z-index: -1;
+  }
+
+  .btn-cosmic:hover {
+    color: var(--pure-white);
+    box-shadow:
+      0 0 40px rgba(106, 13, 173, 0.8),
+      0 0 60px rgba(106, 13, 173, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-cosmic:hover::before {
+    width: 100%;
+  }
+
+  .btn-cosmic:active {
+    transform: translateY(0);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     GRAVITY WELL EFFECT - Loading Animation
+     ═══════════════════════════════════════════════════ */
+
+  @keyframes gravityPull {
+    0% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+
+    50% {
+      transform: scale(0.5) rotate(180deg);
+      opacity: 0.5;
+    }
+
+    100% {
+      transform: scale(0) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes codeEject {
+    0% {
+      transform: scale(0) translateY(0);
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(1) translateY(-20px);
+      opacity: 1;
+    }
+  }
+
+  .gravity-well-pulling {
+    animation: gravityPull 2s cubic-bezier(0.36, 0, 0.66, -0.56) infinite;
+  }
+
+  .code-ejecting {
+    animation: codeEject 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     ACCRETION DISK - Rotating Ring
+     ═══════════════════════════════════════════════════ */
+
+  @keyframes diskRotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .accretion-disk {
+    animation: diskRotate 20s linear infinite;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     FLOATING PARTICLES - Pixel Dust
+     ═══════════════════════════════════════════════════ */
+
+  @keyframes particleFloat {
+
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(-30px) translateX(10px);
+      opacity: 0.8;
+    }
+  }
+
+  .particle {
+    width: 4px;
+    height: 4px;
+    background: var(--event-horizon);
+    position: absolute;
+    animation: particleFloat 8s ease-in-out infinite;
+    box-shadow: 0 0 4px var(--event-horizon);
+  }
+
+  @keyframes nebula-border {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-nebula-border {
+    background-size: 200% 200%;
+    animation: nebula-border 3s linear infinite;
+  }
+
+  @keyframes levitate {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     UTILITY CLASSES
+     ═══════════════════════════════════════════════════ */
+
+  .text-starlight {
+    color: var(--starlight);
+  }
+
+  .bg-void {
+    background-color: var(--void-black);
+  }
+
+  .border-singularity {
+    border-color: var(--event-horizon);
+  }
+
+  .glow-singularity {
+    box-shadow: 0 0 30px rgba(106, 13, 173, 0.6);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     SCROLLBAR - Singularity Themed
+     ═══════════════════════════════════════════════════ */
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--void-black);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--event-horizon) 0%, var(--singularity-core) 100%);
+    box-shadow: 0 0 10px var(--event-horizon);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--event-horizon);
+    box-shadow: 0 0 20px var(--event-horizon);
+  }
+}
+
+@layer utilities {
+  .sharp-corners {
+    border-radius: 0 !important;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     PUTER.JS OVERRIDES - Nebula Cloaking
+     (Attempts to blend the OS dialog into the Cosmic UI)
+     ═══════════════════════════════════════════════════ */
+
+  /* Target the shadow-host if accessible or light DOM elements */
+  #puter-dialog-container,
+  .puter-dialog-wrapper {
+    filter: hue-rotate(260deg) saturate(1.5) contrast(1.2);
+    /* Shifts Blue/Standard to Violet/Deep Blue */
+  }
+
+  /* Force fonts on everything that looks like a dialog */
+  div[id^="puter"],
+  div[class^="puter"] {
+    font-family: 'Exo 2', sans-serif !important;
+  }
+}

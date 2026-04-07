@@ -1,0 +1,21 @@
+{
+    "name": "Nebublox AI",
+    "short_name": "Nebublox",
+    "description": "The Ultimate Roblox Code Generator. AI-powered Luau scripting with instant Studio sync.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "theme_color": "#FF4500",
+    "icons": [
+        {
+            "src": "/assets/images/hero-new-logo.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/images/hero-new-logo.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
