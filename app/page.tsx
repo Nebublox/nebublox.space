@@ -20,6 +20,11 @@ export default function HomePage() {
             document.body.classList.add('boot-locked');
         } else {
             document.body.classList.remove('boot-locked');
+            
+            // Play the epic Morgan Freeman intro voice when the site finishes booting!
+            const introAudio = new Audio('/intro_voice.mp3');
+            introAudio.volume = 1.0;
+            introAudio.play().catch(e => console.error("Intro audio playback failed:", e));
         }
     }, [isBooted]);
 
