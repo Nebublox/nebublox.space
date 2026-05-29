@@ -90,23 +90,6 @@ export default function SystemFooter() {
                             </svg>
                         </Link>
 
-                        {/* Sloyd */}
-                        <Link
-                            href="/sloyd"
-                            className="text-starlight hover:text-[#FE43B2] transition-all duration-300"
-                            title="Build 3D Models with Sloyd"
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.filter = 'drop-shadow(0 0 8px rgba(254, 67, 178, 0.8))';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.filter = 'drop-shadow(0 0 0px rgba(254, 67, 178, 0))';
-                            }}
-                        >
-                            <svg className="w-6 h-6" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
-                                <path d="M50 5 L95 75 L75 75 L50 30 L25 75 L5 75 Z" />
-                                <path d="M30 85 L50 50 L70 85 Z" />
-                            </svg>
-                        </Link>
 
                         {/* YouTube */}
                         <Link

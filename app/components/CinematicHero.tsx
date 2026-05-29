@@ -292,7 +292,7 @@ export default function CinematicHero({ isRevealed = false }: CinematicHeroProps
                                 For support, script updates, or access, make sure to:
                             </p>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <Link
                                     href="https://darkmatterv1-1.onrender.com"
                                     className="group flex flex-col items-start gap-2 p-5 rounded border border-code-cyan/50 hover:border-code-cyan bg-code-cyan/10 hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all duration-300 relative overflow-hidden"
@@ -317,19 +317,7 @@ export default function CinematicHero({ isRevealed = false }: CinematicHeroProps
                                     <span className="text-starlight/50 text-[11px] leading-tight text-left relative z-10 font-mono">Watch showcases, tutorials, and the latest news on upcoming scripts.</span>
                                 </Link>
 
-                                <Link
-                                    href="/sloyd"
-                                    className="group flex flex-col items-start gap-2 p-5 rounded border border-white/5 hover:border-[#FE43B2]/50 hover:shadow-[0_0_20px_rgba(254,67,178,0.15)] transition-all duration-300 bg-white/5 relative overflow-hidden"
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-[#FE43B2]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    <div className="absolute top-0 right-0 px-3 py-1 bg-[#1A98F1]/10 border-l border-b border-[#1A98F1]/20 z-10">
-                                        <span className="text-[9px] font-mono uppercase tracking-widest text-[#1A98F1]">Partner</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 relative z-10">
-                                        <span className="text-[#FE43B2] font-bold text-xs uppercase tracking-wider group-hover:drop-shadow-[0_0_10px_rgba(254,67,178,0.6)]">🔨 Build 3D Models with Sloyd</span>
-                                    </div>
-                                    <span className="text-starlight/50 text-[11px] leading-tight text-left relative z-10 font-mono">Turn ideas into 3D models in seconds with AI — no Blender skills needed. Exclusive 60% OFF for Void Walkers.</span>
-                                </Link>
+
                             </div>
                         </div>
                     </div>

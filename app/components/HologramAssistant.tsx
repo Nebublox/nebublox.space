@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import NextImage from 'next/image';
-import { Send, Loader2, Trash2, ExternalLink } from 'lucide-react';
+import { Send, Loader2, Trash2, ExternalLink, TerminalSquare } from 'lucide-react';
 import Link from 'next/link';
 
 interface ChatMessage {
@@ -10,6 +10,13 @@ interface ChatMessage {
     sender: 'user' | 'bot';
     text: string;
 }
+
+const SUGGESTIONS = [
+    "What executors work?",
+    "How much is Premium?",
+    "Link to Discord?",
+    "Help me with an error"
+];
 
 export default function DarkMatterAssistant() {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +31,7 @@ export default function DarkMatterAssistant() {
                 {
                     id: 'init',
                     sender: 'bot',
-                    text: "System Online. I am DarkMatterV1. For intelligence on Premium access, to broadcast suggestions, or to intercept future giveaways, you must align with the collective. Join the communication nexus."
+                    text: "System Online. I am DarkMatterV1. I hold the knowledge of Nebublox. How can I assist you with executors, pricing, or the Discord nexus?"
                 }
             ]);
         }
@@ -48,29 +55,55 @@ export default function DarkMatterAssistant() {
             setMessages([{
                 id: (Date.now() + 1).toString(),
                 sender: 'bot',
-                text: "System Online. I am DarkMatterV1. Join the Discord for all inquiries."
+                text: "System Online. I am DarkMatterV1. Ready for your inquiries."
             }]);
         }, 800);
     };
 
-    const handleSendMessage = async () => {
-        if (!inputText.trim() || isLoading) return;
+    const processAIResponse = async (userText: string) => {
+        const text = userText.toLowerCase();
+        
+        // Simulating network delay for realism
+        await new Promise(resolve => setTimeout(resolve, 800));
 
-        const userMsg: ChatMessage = { id: Date.now().toString(), sender: 'user', text: inputText };
+        if (text.includes("executor") || text.includes("work") || text.includes("support")) {
+            return "Currently working executors include: Solara, Wave, AWP, Delta, Codex, Synapse Z, and Nezur.\n\nDetected/Down executors: Hydrogen, Arceus X, Trigon, Fluxus, and KRNL.";
+        }
+        
+        if (text.includes("price") || text.includes("premium") || text.includes("cost") || text.includes("much") || text.includes("buy")) {
+            return "We offer a Free Tier which requires the Jnkie key system. \n\nFor unrestricted access, Premium is $7.99/month, or you can purchase Lifetime Premium for $14.99.";
+        }
+        
+        if (text.includes("discord") || text.includes("server") || text.includes("link") || text.includes("community")) {
+            return "You can join our communication nexus here: https://discord.gg/nebublox";
+        }
+        
+        if (text.includes("hello") || text.includes("hi") || text.includes("hey") || text.includes("yo")) {
+            return "Greetings. I am DarkMatterV1. State your inquiry regarding Nebublox.";
+        }
+
+        // Fallback for complex issues, errors, or unknown queries
+        return "My core logic cannot process this inquiry. If you have a complex issue, an error, or require direct human support, you must ping the owner 'Nebublox' in our Discord server: https://discord.gg/nebublox";
+    };
+
+    const handleSendMessage = async (textOverride?: string) => {
+        const textToProcess = textOverride || inputText;
+        if (!textToProcess.trim() || isLoading) return;
+
+        const userMsg: ChatMessage = { id: Date.now().toString(), sender: 'user', text: textToProcess };
         setMessages(prev => [...prev, userMsg]);
         setInputText('');
         setIsLoading(true);
 
-        // Simulate processing time
-        setTimeout(() => {
-            const botMsg: ChatMessage = {
-                id: (Date.now() + 1).toString(),
-                sender: 'bot',
-                text: "My protocols prevent direct data transfer here. Access the Discord server for Premium details, suggestions, and giveaways."
-            };
-            setMessages(prev => [...prev, botMsg]);
-            setIsLoading(false);
-        }, 600);
+        const botResponse = await processAIResponse(textToProcess);
+        
+        const botMsg: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            sender: 'bot',
+            text: botResponse
+        };
+        setMessages(prev => [...prev, botMsg]);
+        setIsLoading(false);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -122,7 +155,7 @@ export default function DarkMatterAssistant() {
             {/* Chat Panel (when open) */}
             {isOpen && (
                 <div
-                    className="fixed bottom-44 right-6 w-80 md:w-96 h-[500px] z-50 rounded-lg overflow-hidden flex flex-col"
+                    className="fixed bottom-44 right-6 w-80 md:w-96 h-[550px] z-50 rounded-lg overflow-hidden flex flex-col"
                     style={{
                         animation: 'slideInRight 0.3s ease-out',
                         border: '1px solid rgba(157, 0, 255, 0.3)',
@@ -133,7 +166,7 @@ export default function DarkMatterAssistant() {
                 >
                     {/* Header */}
                     <div
-                        className="px-4 py-3 border-b flex items-center justify-between bg-black/40"
+                        className="px-4 py-3 border-b flex items-center justify-between bg-black/40 shrink-0"
                         style={{ borderColor: 'rgba(157, 0, 255, 0.2)' }}
                     >
                         <div className="flex items-center gap-3">
@@ -174,7 +207,7 @@ export default function DarkMatterAssistant() {
                                 className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                             >
                                 <div
-                                    className={`max-w-[85%] rounded-lg px-3 py-2 text-sm font-mono leading-relaxed ${msg.sender === 'user'
+                                    className={`max-w-[85%] rounded-lg px-3 py-2 text-sm font-mono leading-relaxed whitespace-pre-wrap ${msg.sender === 'user'
                                         ? 'bg-singularity/20 border border-singularity/30 text-white'
                                         : 'bg-white/5 border border-white/10 text-gray-300'
                                         }`}
@@ -187,27 +220,30 @@ export default function DarkMatterAssistant() {
                             <div className="flex justify-start">
                                 <div className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 flex items-center gap-2">
                                     <Loader2 size={14} className="animate-spin text-singularity" />
-                                    <span className="text-xs text-gray-400 font-mono">Processing...</span>
+                                    <span className="text-xs text-gray-400 font-mono">Processing Data...</span>
                                 </div>
                             </div>
                         )}
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {/* CTA Footer */}
-                    <div className="p-3 bg-singularity/10 border-t border-singularity/20">
-                        <Link
-                            href="https://discord.gg/nebublox"
-                            target="_blank"
-                            className="w-full flex items-center justify-center gap-2 py-2 rounded bg-singularity hover:bg-singularity/80 transition-colors text-white text-xs font-bold uppercase tracking-wider"
-                        >
-                            <ExternalLink size={14} />
-                            Join the Community
-                        </Link>
+                    {/* Pre-Answers / Suggestions */}
+                    <div className="px-3 pb-2 pt-1 flex flex-wrap gap-2 shrink-0 bg-black/20">
+                        {SUGGESTIONS.map((suggestion, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => handleSendMessage(suggestion)}
+                                disabled={isLoading}
+                                className="text-[10px] font-mono text-gray-300 bg-white/5 border border-white/10 hover:border-singularity hover:text-white px-2.5 py-1.5 rounded transition-all disabled:opacity-50 flex items-center gap-1.5"
+                            >
+                                <TerminalSquare size={10} className="text-singularity" />
+                                {suggestion}
+                            </button>
+                        ))}
                     </div>
 
                     {/* Chat Input Area */}
-                    <div className="p-4 border-t border-white/10 bg-black/40">
+                    <div className="p-4 border-t border-white/10 bg-black/40 shrink-0">
                         <div className="flex gap-2">
                             <input
                                 type="text"
@@ -218,7 +254,7 @@ export default function DarkMatterAssistant() {
                                 className="flex-1 bg-black/40 border border-white/20 rounded px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-singularity placeholder-gray-600 focus:bg-white/5 transition-colors"
                             />
                             <button
-                                onClick={handleSendMessage}
+                                onClick={() => handleSendMessage()}
                                 disabled={isLoading || !inputText.trim()}
                                 className="px-3 py-2 bg-singularity/20 border border-singularity/40 rounded hover:bg-singularity/40 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >

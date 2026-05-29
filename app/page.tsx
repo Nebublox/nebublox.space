@@ -6,9 +6,11 @@ import { Play } from 'lucide-react';
 import Image from 'next/image';
 import BootOverlay from './components/BootOverlay';
 import CinematicHero from './components/CinematicHero';
-import ScriptsGrid from './components/ScriptsGrid';
-import SystemFooter from './components/SystemFooter';
-import HologramAssistant from './components/HologramAssistant';
+import SupportedScripts from './components/SupportedScripts';
+import FeaturesGrid from './components/FeaturesGrid';
+import TeamSection from './components/TeamSection';
+import LiveTracker from './components/LiveTracker';
+import LoadstringBlock from './components/LoadstringBlock';
 
 export default function HomePage() {
     const [isBooted, setIsBooted] = useState(false);
@@ -68,17 +70,14 @@ export default function HomePage() {
                 </div>
 
                 {/* Rest of the Site - Fades In Upon Boot */}
-                <div className={`w-full max-w-7xl mx-auto flex flex-col items-center transition-all duration-1000 ${isBooted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
+                <div className={`w-full max-w-7xl mx-auto flex flex-col items-center gap-12 transition-all duration-1000 ${isBooted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
+                    <LoadstringBlock />
+                    <SupportedScripts />
+                    <FeaturesGrid />
+                    <TeamSection />
                 </div>
 
             </main>
-
-            {/* System Footer */}
-            <SystemFooter />
-
-            {/* Hologram Assistant Widget */}
-            <HologramAssistant />
-
         </div>
     );
 }

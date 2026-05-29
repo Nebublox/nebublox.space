@@ -3,10 +3,11 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Navbar from './components/Navbar'
 import FloatingParticles from './components/FloatingParticles'
-import PuterScript from './components/PuterScript'
 import NebulaBackground from './components/NebulaBackground'
 import Script from 'next/script'
 import ExecutorTicker from './components/ExecutorTicker'
+import SystemFooter from './components/SystemFooter'
+import HologramAssistant from './components/HologramAssistant'
 
 export const metadata: Metadata = {
   title: 'NEBUBLOX - Ultimate Roblox Script Hub | Powered by NEBULA ENGINE',
@@ -74,9 +75,6 @@ export default function RootLayout({
           <NebulaBackground />
         </div>
 
-        {/* Puter.js Cloud OS SDK */}
-        <PuterScript />
-
         {/* Analytics/Tracking Script */}
         <Script
           id="nebublox-tracking"
@@ -97,6 +95,8 @@ export default function RootLayout({
             {children}
           </main>
         </div>
+        <SystemFooter />
+        <HologramAssistant />
       </body>
     </html>
   )

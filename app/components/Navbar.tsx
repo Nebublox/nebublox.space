@@ -1,160 +1,56 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import NextImage from 'next/image';
 
 export default function Navbar() {
-    const [railVisible, setRailVisible] = useState(false);
-
-    useEffect(() => {
-        // Animate system rail sliding down after mount
-        setTimeout(() => setRailVisible(true), 300);
-    }, []);
-
     return (
-        <div className="fixed top-0 left-0 right-0 z-50">
-
-            <div
-                className="overflow-hidden transition-all duration-500"
-                style={{
-                    height: railVisible ? '60px' : '0px',
-                    background: 'rgba(0, 0, 0, 0.4)',
-                    borderBottom: '1px solid rgba(157, 0, 255, 0.4)',
-                    backdropFilter: 'blur(16px)'
-                }}
-            >
-                <div className="h-full max-w-7xl mx-auto px-6 flex items-center justify-between">
-                    {/* Logo Integrated in Rail */}
-                    <Link href="/" className="flex items-center group ml-10 transition-transform duration-300">
-                        <div className="relative w-36 h-8 flex items-center">
-                            {/* Nebula Glow behind logo */}
+        <div className="fixed top-0 left-0 right-0 h-[60px] z-50 bg-[#0B0B13]/90 border-b border-purple-500/20 backdrop-blur-md">
+            <div className="max-w-7xl mx-auto px-6 h-full grid grid-cols-3 items-center">
+                {/* Left Side: Logo */}
+                <div className="flex items-center justify-start">
+                    <Link href="/" className="flex items-center group transition-transform duration-300 -ml-2">
+                        <div className="relative h-[60px] w-64 flex items-center pl-0">
                             <div className="absolute inset-x-0 h-full bg-[#9D00FF]/40 blur-xl rounded-full scale-150 animate-nebula-pulse pointer-events-none" />
                             <img
                                 src="/nebublox-logo.png"
                                 alt="NEBUBLOX"
-                                className="w-full h-full object-contain object-left drop-shadow-[0_0_20px_rgba(157,0,255,0.6)] relative z-10"
+                                className="w-full h-full object-contain object-left drop-shadow-[0_0_20px_rgba(157,0,255,0.6)] relative z-10 scale-[2.5] origin-left"
                             />
                         </div>
                     </Link>
+                </div>
 
-                    {/* Divider */}
-                    <span className="animate-divider-pulse">|</span>
-
-                    {/* THE CORE */}
-                    <div className="flex items-center gap-2">
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: '#C0C0C0' }}>
-                            THE CORE:
-                        </span>
-                        <span
-                            className="text-[12px] font-mono uppercase tracking-[0.2em]"
-                            style={{
-                                color: 'var(--code-cyan)',
-                                textShadow: '0 0 10px rgba(0, 255, 255, 0.6)'
-                            }}
-                        >
-                            NEBULA ENGINE
-                        </span>
+                {/* Center Side: Navigation Pill */}
+                <div className="flex items-center justify-center">
+                    <div className="flex items-center gap-2 bg-[#05050A]/80 border border-white/10 px-2 py-1.5 rounded-2xl shadow-xl backdrop-blur-md">
+                        <Link href="/" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] px-4 py-1.5 rounded-lg transition-all shadow-[0_0_15px_rgba(157,0,255,0.3)] hover:scale-105">Home</Link>
+                        <Link href="/executors" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] px-4 py-1.5 rounded-lg transition-all shadow-[0_0_15px_rgba(157,0,255,0.3)] hover:scale-105">Executors</Link>
+                        <Link href="/games" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] px-4 py-1.5 rounded-lg transition-all shadow-[0_0_15px_rgba(157,0,255,0.3)] hover:scale-105">Games</Link>
+                        <Link href="/showcases" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] px-4 py-1.5 rounded-lg transition-all shadow-[0_0_15px_rgba(157,0,255,0.3)] hover:scale-105">Showcases</Link>
+                        <Link href="/pricing" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] border border-white/20 px-5 py-1.5 rounded-xl transition-all shadow-[0_0_20px_rgba(157,0,255,0.6)] ml-1 hover:scale-105">
+                            Pricing
+                        </Link>
                     </div>
+                </div>
 
-                    {/* Divider */}
-                    <span className="animate-divider-pulse">|</span>
-
-                    {/* ENGINE */}
-                    <div className="flex items-center gap-2">
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: '#C0C0C0' }}>
-                            ENGINE:
-                        </span>
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: '#C0C0C0' }}>
-                            DARKMATTER V1
-                        </span>
-                    </div>
-
-                    {/* Divider */}
-                    <span className="animate-divider-pulse">|</span>
-
-                    {/* LINK */}
-                    <a href="https://discord.gg/nebublox" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: '#C0C0C0' }}>
-                            LINK:
-                        </span>
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: '#C0C0C0' }}>
-                            DISCORD
-                        </span>
+                {/* Right Side: Discord */}
+                <div className="flex items-center justify-end">
+                    <a 
+                        href="https://discord.gg/nebublox" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center gap-2 bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] px-5 py-2 rounded-xl text-white font-extrabold hover:scale-105 transition-transform shadow-[0_0_20px_rgba(157,0,255,0.5)] border border-white/10"
+                    >
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z" />
+                        </svg>
+                        Discord
                     </a>
-
-                    {/* Divider */}
-                    <span className="animate-divider-pulse">|</span>
-
-                    {/* GET KEY */}
-                    <Link href="/getkey" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: '#C0C0C0' }}>
-                            GET:
-                        </span>
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: 'var(--code-cyan)' }}>
-                            KEY
-                        </span>
-                    </Link>
-
-                    {/* Divider */}
-                    {/* JUNKIE VERIFY */}
-                    <Link href="/verify" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: '#C0C0C0' }}>
-                            JUNKIE:
-                        </span>
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: 'var(--code-cyan)' }}>
-                            VERIFY
-                        </span>
-                    </Link>
-
-                    {/* Divider */}
-                    <span className="animate-divider-pulse">|</span>
-
-                    {/* STATUS */}
-                    <div className="flex items-center gap-2">
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: '#C0C0C0' }}>
-                            STATUS:
-                        </span>
-                        <span className="text-[12px] font-mono uppercase tracking-[0.2em]" style={{ color: 'var(--code-cyan)' }}>
-                            OPTIMIZED
-                        </span>
-                    </div>
-
                 </div>
             </div>
-
-            {/* Navbar Styles */}
+            {/* Styles for the glowing nebula effect */}
             <style jsx>{`
-                .nav-link:hover {
-                    color: #9D00FF !important;
-                }
-                
-                @keyframes flicker {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.3; }
-                }
-
-                @keyframes divider-pulse {
-                    0%, 100% { color: rgba(157, 0, 255, 0.4); text-shadow: 0 0 5px rgba(157, 0, 255, 0.2); }
-                    33% { color: rgba(0, 255, 255, 0.6); text-shadow: 0 0 8px rgba(0, 255, 255, 0.4); }
-                    66% { color: rgba(255, 0, 204, 0.6); text-shadow: 0 0 8px rgba(255, 0, 204, 0.4); }
-                }
-
-                .animate-divider-pulse {
-                    animation: divider-pulse 4s linear infinite;
-                    font-weight: bold;
-                }
-                
-                .prefix {
-                    display: inline-block;
-                    margin-right: 4px;
-                }
-                
-                .group:hover .prefix {
-                    animation: flicker 0.3s ease-in-out 2;
-                    color: #9D00FF;
-                }
-
                 @keyframes nebula-pulse {
                     0%, 100% { transform: scale(1.5); opacity: 0.2; }
                     50% { transform: scale(1.8); opacity: 0.4; }

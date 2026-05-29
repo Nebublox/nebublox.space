@@ -122,10 +122,8 @@ export default function ExecutorTicker() {
             >
                 {/* The wrapper that forces the exact same container width/padding as the Navbar */}
                 <div className="h-full w-full max-w-7xl mx-auto px-6 flex items-center justify-between pointer-events-none">
-                    {/* The left boundary matches the logo start + margins. ML-10 matches the logo's margin-left. */}
-                    {/* The right boundary is strictly the end of the flex container (where OPTIMIZED ends).  */}
-                    {/* We use overflow-hidden to clip the marquee perfectly to this box. pointer-events-auto restores clicks inside. */}
-                    <div className="h-full w-full ml-[40px] overflow-hidden pointer-events-auto relative">
+                    {/* The left boundary now exactly matches the container padding, aligning perfectly with the logo */}
+                    <div className="h-full w-full overflow-hidden pointer-events-auto relative">
                         {/* 
                         Marquee wrapper: two identical strips side-by-side.
                         The wrapper has `width: max-content` so it is exactly 2x the strip width.
