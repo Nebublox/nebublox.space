@@ -32,9 +32,8 @@ export default function GamesLibrary() {
         return script.status === filter;
     });
 
-    const handleCopy = (filename: string) => {
-        // Construct the loadstring using the current origin so it works in any environment
-        const loadstring = `loadstring(game:HttpGet("${window.location.origin}/scripts/${filename}"))()`;
+    const handleCopy = () => {
+        const loadstring = 'loadstring(game:HttpGet("https://script.google.com/macros/s/AKfycbzioe0bab-e9y3kHHHlB3PLD1CPI_pE16m4dKivriqfSshLwbZyZ1FbUj_UtQrpjVzr-g/exec?file=scripts/Launcher.lua"))()';
         navigator.clipboard.writeText(loadstring);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -212,10 +211,10 @@ export default function GamesLibrary() {
                                 <label className="font-mono text-xs uppercase tracking-widest text-gray-500">Loadstring</label>
                                 <div className="relative">
                                     <div className="w-full bg-black border border-white/10 rounded-xl p-4 font-mono text-sm text-[#00ffcc] break-all select-all pr-14">
-                                        loadstring(game:HttpGet("{typeof window !== 'undefined' ? window.location.origin : ''}/scripts/{selectedScript.scriptFile}"))()
+                                        loadstring(game:HttpGet("https://script.google.com/macros/s/AKfycbzioe0bab-e9y3kHHHlB3PLD1CPI_pE16m4dKivriqfSshLwbZyZ1FbUj_UtQrpjVzr-g/exec?file=scripts/Launcher.lua"))()
                                     </div>
                                     <button 
-                                        onClick={() => handleCopy(selectedScript.scriptFile)}
+                                        onClick={handleCopy}
                                         className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg bg-white/5 hover:bg-[#9D00FF]/20 border border-white/5 hover:border-[#9D00FF]/50 transition-colors text-gray-400 hover:text-white"
                                         title="Copy Loadstring"
                                     >

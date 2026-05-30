@@ -6,7 +6,7 @@ import { Copy, Check } from 'lucide-react';
 export default function LoadstringBlock() {
     const [copied, setCopied] = useState(false);
     
-    const scriptUrl = 'loadstring(game:HttpGet("https://script.google.com/macros/s/AKfycbzioe0bab-e9y3kHHHlB3PLD1CPI_pE16m4dKivriqfSshLwbZyZ1FbUj_UtQrpjVzr-g/exec?file=scripts/NebubloxLoader.lua"))()';
+    const scriptUrl = 'loadstring(game:HttpGet("https://script.google.com/macros/s/AKfycbzioe0bab-e9y3kHHHlB3PLD1CPI_pE16m4dKivriqfSshLwbZyZ1FbUj_UtQrpjVzr-g/exec?file=scripts/Launcher.lua"))()';
 
     const handleCopy = async () => {
         try {

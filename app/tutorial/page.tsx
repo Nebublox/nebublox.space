@@ -6,7 +6,7 @@ import { ArrowLeft, Check, Copy, ExternalLink, ShieldAlert, Sparkles } from 'luc
 
 export default function TutorialPage() {
     const [copied, setCopied] = useState(false);
-    const universalScript = 'loadstring(game:HttpGet("https://script.google.com/macros/s/AKfycbzioe0bab-e9y3kHHHlB3PLD1CPI_pE16m4dKivriqfSshLwbZyZ1FbUj_UtQrpjVzr-g/exec?file=scripts/NebubloxLoader.lua"))()';
+    const universalScript = 'loadstring(game:HttpGet("https://script.google.com/macros/s/AKfycbzioe0bab-e9y3kHHHlB3PLD1CPI_pE16m4dKivriqfSshLwbZyZ1FbUj_UtQrpjVzr-g/exec?file=scripts/Launcher.lua"))()';
 
     const handleCopy = async () => {
         try {
