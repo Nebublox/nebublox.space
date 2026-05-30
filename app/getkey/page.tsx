@@ -84,7 +84,7 @@ export default function GetKeyPage() {
 
                         {/* JNKIE CTA */}
                         <a
-                            href="https://jnkie.com/get-key/fremium"
+                            href="https://jnkie.com/get-key/stardust"
                             className="bg-singularity hover:bg-singularity/80 text-white font-bold py-4 px-10 rounded uppercase tracking-[0.2em] flex items-center gap-3 transition-all duration-300 hover:shadow-[0_0_30px_rgba(157,0,255,0.6)] group relative z-50 cursor-pointer"
                         >
                             Generate Key

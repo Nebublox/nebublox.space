@@ -28,6 +28,7 @@ export default function Navbar() {
                         <Link href="/executors" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] px-4 py-1.5 rounded-lg transition-all shadow-[0_0_15px_rgba(157,0,255,0.3)] hover:scale-105">Executors</Link>
                         <Link href="/games" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] px-4 py-1.5 rounded-lg transition-all shadow-[0_0_15px_rgba(157,0,255,0.3)] hover:scale-105">Games</Link>
                         <Link href="/showcases" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] px-4 py-1.5 rounded-lg transition-all shadow-[0_0_15px_rgba(157,0,255,0.3)] hover:scale-105">Showcases</Link>
+                        <Link href="/tutorial" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] px-4 py-1.5 rounded-lg transition-all shadow-[0_0_15px_rgba(157,0,255,0.3)] hover:scale-105">Tutorial</Link>
                         <Link href="/pricing" className="text-sm font-bold text-white bg-gradient-to-r from-[#9D00FF] to-[#00E6FF] hover:from-[#b033ff] hover:to-[#33edff] border border-white/20 px-5 py-1.5 rounded-xl transition-all shadow-[0_0_20px_rgba(157,0,255,0.6)] ml-1 hover:scale-105">
                             Pricing
                         </Link>

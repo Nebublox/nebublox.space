@@ -83,7 +83,7 @@ export default function Pricing() {
                             </ul>
                         </div>
 
-                        <a href="https://jnkie.com/get-key/freemium" target="_blank" rel="noopener noreferrer" 
+                        <a href="https://jnkie.com/get-key/stardust" target="_blank" rel="noopener noreferrer" 
                            className="mt-auto w-full py-4 px-6 rounded-xl font-bold uppercase tracking-widest text-center transition-all bg-white/5 hover:bg-white/10 border border-white/10 text-white">
                             Get Free Key
                         </a>
@@ -103,9 +103,9 @@ export default function Pricing() {
                                 <h3 className="text-2xl font-black">Lifetime</h3>
                             </div>
                             <div className="flex flex-col gap-1">
-                                <span className="text-lg font-bold text-gray-500 line-through decoration-red-500 decoration-2 opacity-70">$19.99</span>
+                                <span className="text-lg font-bold text-gray-500 line-through decoration-red-500 decoration-2 opacity-70">$24.99</span>
                                 <div className="flex items-end gap-2">
-                                    <span className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e0c4ff] drop-shadow-[0_0_15px_rgba(157,0,255,0.8)]">$14.99</span>
+                                    <span className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e0c4ff] drop-shadow-[0_0_15px_rgba(157,0,255,0.8)]">$19.99</span>
                                 </div>
                             </div>
                             <p className="text-gray-400 mt-4 text-sm">Pay once, own it forever. The ultimate Nebublox experience.</p>
