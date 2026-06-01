@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Gamepad2, Search, X, Copy, Check, Terminal } from 'lucide-react';
 
-type ScriptStatus = 'online' | 'discontinued';
+type ScriptStatus = 'online' | 'updating' | 'offline' | 'removed';
 
 interface GameScript {
     name: string;
@@ -16,19 +16,46 @@ interface GameScript {
 }
 
 const SCRIPTS: GameScript[] = [
-    { name: 'World Fighters Nebublox', lastUpdate: 'Recently', status: 'online', scriptFile: 'World_Fighters_Nebublox.lua', robloxUrl: 'https://www.roblox.com/games/95630541662383/EVENT-World-Fighters' },
     { name: 'Anime Astral Nebublox', lastUpdate: 'Recently', status: 'online', scriptFile: 'Anime_Astral_Nebublox.lua', robloxUrl: 'https://www.roblox.com/games/109606232274503/Anime-Astral-Simulator' },
-    { name: 'Anime Heroes Nebublox', lastUpdate: 'Unknown', status: 'online', scriptFile: 'Anime_Heroes_Nebublox.lua', robloxUrl: 'https://www.roblox.com/games/74578002631923/JJK-Anime-Heroes', isDiscontinued: true },
+    { name: 'World Fighters Nebublox', lastUpdate: 'Recently', status: 'online', scriptFile: 'World_Fighters_Nebublox.lua', robloxUrl: 'https://www.roblox.com/games/95630541662383/EVENT-World-Fighters' },
     { name: 'Anime Leveling Nebublox', lastUpdate: 'Unknown', status: 'online', scriptFile: 'Anime_Leveling_Nebublox.lua', robloxUrl: 'https://www.roblox.com/games/78754030900809/Anime-Leveling', isDiscontinued: true },
+    { name: 'Anime Heroes Nebublox', lastUpdate: 'Unknown', status: 'online', scriptFile: 'Anime_Heroes_Nebublox.lua', robloxUrl: 'https://www.roblox.com/games/74578002631923/JJK-Anime-Heroes', isDiscontinued: true },
+    { name: 'Anime Clicker Nebublox', lastUpdate: 'Unknown', status: 'removed', scriptFile: '', robloxUrl: '#', isDiscontinued: true },
+    { name: 'Anime Ghost Nebublox', lastUpdate: 'Unknown', status: 'removed', scriptFile: '', robloxUrl: '#', isDiscontinued: true },
+    { name: 'Anime Tatical Nebublox', lastUpdate: 'Unknown', status: 'removed', scriptFile: '', robloxUrl: '#', isDiscontinued: true },
+    { name: 'Anime Crash Nebublox', lastUpdate: 'Unknown', status: 'removed', scriptFile: '', robloxUrl: '#', isDiscontinued: true },
+    { name: 'Anime Clash Nebublox', lastUpdate: 'Unknown', status: 'removed', scriptFile: '', robloxUrl: '#', isDiscontinued: true },
+    { name: 'Anime Force Nebublox', lastUpdate: 'Unknown', status: 'removed', scriptFile: '', robloxUrl: '#', isDiscontinued: true },
 ];
 
+const getStatusColor = (status: string) => {
+    switch(status) {
+        case 'online': return 'bg-[var(--code-cyan)]/10 border-[var(--code-cyan)]/30 text-[var(--code-cyan)] shadow-[0_0_10px_rgba(0,255,255,0.1)]';
+        case 'updating': return 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400';
+        case 'offline': return 'bg-red-500/10 border-red-500/30 text-red-400';
+        case 'removed': return 'bg-gray-500/10 border-gray-500/30 text-gray-400';
+        default: return 'bg-white/10 border-white/30 text-white';
+    }
+}
+
+const getIconColor = (status: string) => {
+    switch(status) {
+        case 'online': return 'bg-[var(--code-cyan)]/10 border-[var(--code-cyan)]/30 text-[var(--code-cyan)] group-hover:bg-[var(--code-cyan)]/20';
+        case 'updating': return 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400 group-hover:bg-yellow-500/20';
+        case 'offline': return 'bg-red-500/10 border-red-500/30 text-red-400 group-hover:bg-red-500/20';
+        case 'removed': return 'bg-gray-500/10 border-gray-500/30 text-gray-400 group-hover:bg-gray-500/20';
+        default: return 'bg-white/10 border-white/30 text-white group-hover:bg-white/20';
+    }
+}
+
 export default function GamesLibrary() {
-    const [filter, setFilter] = useState<'all' | 'online' | 'discontinued'>('all');
+    const [filter, setFilter] = useState<'all' | 'online' | 'updating' | 'offline' | 'removed' | 'discontinued'>('all');
     const [selectedScript, setSelectedScript] = useState<GameScript | null>(null);
     const [copied, setCopied] = useState(false);
 
     const filteredScripts = SCRIPTS.filter(script => {
         if (filter === 'all') return true;
+        if (filter === 'discontinued') return script.isDiscontinued;
         return script.status === filter;
     });
 
@@ -72,12 +99,12 @@ export default function GamesLibrary() {
                 
                 {/* Controls */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-                    <div className="flex bg-black/40 p-1.5 rounded-xl border border-white/10">
-                        {(['all', 'online', 'discontinued'] as const).map(f => (
+                    <div className="flex bg-black/40 p-1.5 rounded-xl border border-white/10 flex-wrap gap-2">
+                        {(['all', 'online', 'updating', 'offline', 'removed', 'discontinued'] as const).map(f => (
                             <button
                                 key={f}
                                 onClick={() => setFilter(f)}
-                                className={`px-6 py-2 rounded-lg font-mono text-xs uppercase tracking-widest transition-all ${
+                                className={`px-4 md:px-6 py-2 rounded-lg font-mono text-xs uppercase tracking-widest transition-all ${
                                     filter === f 
                                     ? 'bg-[#9D00FF] text-white shadow-[0_0_15px_rgba(157,0,255,0.4)]' 
                                     : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -113,14 +140,10 @@ export default function GamesLibrary() {
                                     >
                                         <td className="p-6">
                                             <div className="flex items-center gap-3">
-                                                <div className={`p-2 rounded-lg border transition-colors ${
-                                                    script.status === 'online' 
-                                                    ? 'bg-[var(--code-cyan)]/10 border-[var(--code-cyan)]/30 text-[var(--code-cyan)] group-hover:bg-[var(--code-cyan)]/20' 
-                                                    : 'bg-red-500/10 border-red-500/30 text-red-400 group-hover:bg-red-500/20'
-                                                }`}>
+                                                <div className={`p-2 rounded-lg border transition-colors ${getIconColor(script.status)}`}>
                                                     <Terminal size={18} />
                                                 </div>
-                                                <span className="font-bold text-lg group-hover:text-[#9D00FF] transition-colors">
+                                                <span className={`font-bold text-lg transition-colors ${script.status === 'removed' ? 'text-gray-500 group-hover:text-gray-400 line-through' : 'group-hover:text-[#9D00FF]'}`}>
                                                     {script.name}
                                                 </span>
                                             </div>
@@ -129,18 +152,16 @@ export default function GamesLibrary() {
                                             {script.lastUpdate}
                                         </td>
                                         <td className="p-6">
-                                            <span className={`px-3 py-1 text-[10px] font-bold font-mono uppercase tracking-widest rounded-full border ${
-                                                script.status === 'online'
-                                                ? 'bg-[var(--code-cyan)]/10 border-[var(--code-cyan)]/30 text-[var(--code-cyan)] shadow-[0_0_10px_rgba(0,255,255,0.1)]'
-                                                : 'bg-red-500/10 border-red-500/30 text-red-400'
-                                            }`}>
-                                                {script.status}
-                                            </span>
-                                            {script.isDiscontinued && (
-                                                <span className="ml-2 px-3 py-1 text-[10px] font-bold font-mono uppercase tracking-widest rounded-full border bg-orange-500/10 border-orange-500/30 text-orange-400">
-                                                    Discontinued
+                                            <div className="flex flex-wrap gap-2 items-center">
+                                                <span className={`px-3 py-1 text-[10px] font-bold font-mono uppercase tracking-widest rounded-full border ${getStatusColor(script.status)}`}>
+                                                    {script.status}
                                                 </span>
-                                            )}
+                                                {script.isDiscontinued && (
+                                                    <span className="px-3 py-1 text-[10px] font-bold font-mono uppercase tracking-widest rounded-full border bg-orange-500/10 border-orange-500/30 text-orange-400">
+                                                        Discontinued
+                                                    </span>
+                                                )}
+                                            </div>
                                         </td>
                                     </tr>
                                 ))}
@@ -179,11 +200,7 @@ export default function GamesLibrary() {
                         
                         <div className="p-6 flex flex-col gap-6">
                             <div className="flex items-center gap-4">
-                                <span className={`px-3 py-1 text-[10px] font-bold font-mono uppercase tracking-widest rounded-full border ${
-                                    selectedScript.status === 'online'
-                                    ? 'bg-[var(--code-cyan)]/10 border-[var(--code-cyan)]/30 text-[var(--code-cyan)]'
-                                    : 'bg-red-500/10 border-red-500/30 text-red-400'
-                                }`}>
+                                <span className={`px-3 py-1 text-[10px] font-bold font-mono uppercase tracking-widest rounded-full border ${getStatusColor(selectedScript.status)}`}>
                                     {selectedScript.status}
                                 </span>
                                 {selectedScript.isDiscontinued && (
@@ -207,26 +224,33 @@ export default function GamesLibrary() {
                                 )}
                             </div>
 
-                            <div className="flex flex-col gap-2">
-                                <label className="font-mono text-xs uppercase tracking-widest text-gray-500">Loadstring</label>
-                                <div className="relative">
-                                    <div className="w-full bg-black border border-white/10 rounded-xl p-4 font-mono text-sm text-[#00ffcc] break-all select-all pr-14">
-                                        loadstring(game:HttpGet("https://script.google.com/macros/s/AKfycbzioe0bab-e9y3kHHHlB3PLD1CPI_pE16m4dKivriqfSshLwbZyZ1FbUj_UtQrpjVzr-g/exec?file=scripts/Launcher.lua"))()
-                                    </div>
-                                    <button 
-                                        onClick={handleCopy}
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg bg-white/5 hover:bg-[#9D00FF]/20 border border-white/5 hover:border-[#9D00FF]/50 transition-colors text-gray-400 hover:text-white"
-                                        title="Copy Loadstring"
-                                    >
-                                        {copied ? <Check size={18} className="text-green-400" /> : <Copy size={18} />}
-                                    </button>
+                            {selectedScript.status === 'removed' ? (
+                                <div className="p-4 rounded-xl bg-gray-500/10 border border-gray-500/20 flex gap-3 text-gray-400 text-sm">
+                                    <span className="text-gray-500">ℹ️</span>
+                                    This script has been completely removed and is no longer accessible.
                                 </div>
-                            </div>
+                            ) : (
+                                <div className="flex flex-col gap-2">
+                                    <label className="font-mono text-xs uppercase tracking-widest text-gray-500">Loadstring</label>
+                                    <div className="relative">
+                                        <div className="w-full bg-black border border-white/10 rounded-xl p-4 font-mono text-sm text-[#00ffcc] break-all select-all pr-14">
+                                            loadstring(game:HttpGet("https://script.google.com/macros/s/AKfycbzioe0bab-e9y3kHHHlB3PLD1CPI_pE16m4dKivriqfSshLwbZyZ1FbUj_UtQrpjVzr-g/exec?file=scripts/Launcher.lua"))()
+                                        </div>
+                                        <button 
+                                            onClick={handleCopy}
+                                            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg bg-white/5 hover:bg-[#9D00FF]/20 border border-white/5 hover:border-[#9D00FF]/50 transition-colors text-gray-400 hover:text-white"
+                                            title="Copy Loadstring"
+                                        >
+                                            {copied ? <Check size={18} className="text-green-400" /> : <Copy size={18} />}
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                             
-                            {selectedScript.isDiscontinued && (
+                            {selectedScript.isDiscontinued && selectedScript.status !== 'removed' && (
                                 <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 flex gap-3 text-orange-200 text-sm">
                                     <span className="text-orange-400">⚠️</span>
-                                    This script is discontinued and is no longer receiving updates, but it is currently online and functional.
+                                    This script is discontinued and is no longer receiving updates, but it is currently {selectedScript.status} and might still be functional.
                                 </div>
                             )}
                         </div>
